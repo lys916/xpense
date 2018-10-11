@@ -27,4 +27,4 @@ const mapStateToProps = (state) => {
 	return {}
 }
 
-export default connect(mapStateToProps, { })(withStyles(styles)(UserList));
+export default connect(mapStateToProps, {})(withStyles(styles)(UserList));

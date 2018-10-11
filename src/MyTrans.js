@@ -10,6 +10,7 @@ import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import CardContent from '@material-ui/core/CardContent';
 // import { Link } from 'react-router-dom';
@@ -44,6 +45,7 @@ class MyTrans extends React.Component {
 		const { transactions, classes } = this.props;
 		return (
 			<div className={classes.root}>
+				{/* <CircularProgress className={classes.progress} /> */}
 				{transactions.map(trans => {
 					return (
 						<CardActionArea className={classes.card}>
@@ -133,9 +135,8 @@ const styles = theme => ({
 		paddingBottom: 100
 	},
 	card: {
-		margin: "5px 0px",
-		padding: "0px 10px",
-		width: '100%',
+		width: '97%',
+		margin: "5px auto",
 		textAlign: 'left'
 	},
 	button: {

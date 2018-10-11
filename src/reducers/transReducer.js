@@ -34,6 +34,7 @@ const transReducer = (state = dummyTrans, action) => {
 	switch (action.type) {
 
 		default:
+		console.log('returning transactions');
 			return state;
 	}
 };
