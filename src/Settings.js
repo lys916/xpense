@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 // import { fireAuth } from "./config/firebase";
 import { signOut } from './actions/userAction';
+import { withStyles } from '@material-ui/core/styles';
+
 
 class Settings extends React.Component {
 
@@ -13,8 +15,9 @@ class Settings extends React.Component {
 	}
 
 	render() {
+		const { classes } = this.props;
 		return (
-			<div className="new-trans">
+			<div className={classes.root}>
 				Settings component
 				<button onClick={this.handleSignOut}>singOut</button>
 			</div>
@@ -22,8 +25,13 @@ class Settings extends React.Component {
 	}
 }
 
+const styles = {
+	root: {
+		paddingTop: 100
+	}
+};
+
 const mapStateToProps = (state) => {
 	return {}
 }
-
-export default connect(mapStateToProps, { signOut })(Settings);
+export default connect(mapStateToProps, { signOut })(withStyles(styles)(Settings));

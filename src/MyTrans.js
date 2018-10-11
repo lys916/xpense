@@ -120,7 +120,7 @@ const styles = theme => ({
 	paper: {
 		position: 'relative',
 		width: '90%',
-		height: '80vh',
+		height: '60vh',
 		margin: '10px auto',
 		padding: '0px 10px',
 		//   width: theme.spacing.unit * 50,
