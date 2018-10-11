@@ -118,9 +118,9 @@ MyTrans.propTypes = {
 
 const styles = theme => ({
 	paper: {
-		  position: 'relative',
+		position: 'relative',
 		width: '90%',
-		height: '70vh',
+		height: '80vh',
 		margin: '10px auto',
 		padding: '0px 10px',
 		//   width: theme.spacing.unit * 50,
@@ -133,7 +133,8 @@ const styles = theme => ({
 		paddingBottom: 100
 	},
 	card: {
-		marginRight: "100px",
+		margin: "5px 0px",
+		padding: "0px 10px",
 		width: '100%',
 		textAlign: 'left'
 	},
