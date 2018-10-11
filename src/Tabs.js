@@ -69,13 +69,14 @@ Tabs.propTypes = {
 const styles = {
 	root: {
 		flexGrow: 1,
-		position: 'absolute',
+		position: 'fixed',
 		bottom: 0,
 		zIndex: 1,
 		width: '100%'
 	},
 	tab: {
-		width: '100%'
+		width: '100%',
+		fontSize: 13
 	}
 };
 

@@ -59,7 +59,10 @@ HeaderBar.propTypes = {
 
 const styles = {
 	root: {
-		flexGrow: 1
+		flexGrow: 1,
+		position: 'fixed',
+		zIndex: 1,
+		width: '100%'
 	},
 	menuButton: {
 		marginLeft: -12,

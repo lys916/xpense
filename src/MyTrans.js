@@ -47,15 +47,16 @@ MyTrans.propTypes = {
 
 const styles = {
 	root: {
-		height: '100vh'
+		paddingTop: 70,
+		paddingBottom: 100,
 	},
 	card: {
-		margin: '5px 0px',
+		padding: 5,
 		width: '100%',
 		textAlign: 'left'
 	},
 	button: {
-		position: 'absolute',
+		position: 'fixed',
 		bottom: 80,
 		right: 10
 	}
