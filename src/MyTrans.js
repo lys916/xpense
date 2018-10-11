@@ -80,7 +80,7 @@ class MyTrans extends React.Component {
 							id="standard-multiline-static"
 							label="Description"
 							multiline
-							rows="4"
+							rows="2"
 							//  defaultValue="Default Value"
 							className={classes.input}
 							margin="normal"
@@ -120,7 +120,7 @@ const styles = theme => ({
 	paper: {
 		  position: 'relative',
 		width: '90%',
-		height: '90vh',
+		height: '70vh',
 		margin: '10px auto',
 		padding: '0px 10px',
 		//   width: theme.spacing.unit * 50,
@@ -147,7 +147,7 @@ const styles = theme => ({
 	},
 	save: {
 		width: '100%',
-		margin: '50px 0px'
+		margin: '20px 0px'
 	}
 });
 
