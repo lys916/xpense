@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { addTran, fetchTrans } from './actions/tranAction';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Button from '@material-ui/core/Button';
@@ -33,7 +34,16 @@ function getModalStyle() {
 class MyTrans extends React.Component {
 	state = {
 		open: false,
+		title: '',
+		desc: '', 
+		amount: '',
+		missingField: false
 	};
+
+	componentDidMount(){
+		this.props.fetchTrans();
+	}
+
 	handleOpen = () => {
 		this.setState({ open: true });
 	};
@@ -41,12 +51,30 @@ class MyTrans extends React.Component {
 	handleClose = () => {
 		this.setState({ open: false });
 	};
+	handleChange = (prop) => (event) => {
+		this.setState({ [prop]: event.target.value, missingField: false });
+	};
+	handleSaveTran = ()=>{
+		const {title, desc, amount} = this.state
+		if(title !== '' && desc !== '' && amount !== ''){
+			this.setState({open: false}, ()=>{
+				this.props.addTran({
+					title: this.state.title,
+					desc: this.state.desc,
+					amount: this.state.amount
+				});
+			});
+		}else{
+			this.setState({missingField: true});
+		}
+		
+	}
 	render() {
 		const { transactions, classes } = this.props;
 		return (
 			<div className={classes.root}>
 				{/* <CircularProgress className={classes.progress} /> */}
-				{transactions.map(trans => {
+				{/* {transactions.map(trans => {
 					return (
 						<CardActionArea className={classes.card}>
 							<Card>
@@ -56,7 +84,23 @@ class MyTrans extends React.Component {
 							</Card>
 						</CardActionArea>
 					)
+				})} */}
+
+				{Object.keys(transactions).map(key=>{
+					console.log('XXXXX KEY', key);
+					return (
+						<CardActionArea className={classes.card}>
+							<Card>
+								<CardContent>
+									{transactions[key].title}
+								</CardContent>
+							</Card>
+						</CardActionArea>
+					)
 				})}
+
+
+
 				<Button variant="fab" color="primary" aria-label="Add" className={classes.button} onClick={this.handleOpen}>
 					<AddIcon />
 				</Button>
@@ -68,12 +112,14 @@ class MyTrans extends React.Component {
 					onClose={this.handleClose}
 				>
 					<div className={classes.modal}>
-					
+						
 						<TextField
 							id="standard-dense"
 							label="Title"
 							className={classes.input}
 							margin="dense"
+							value={this.state.title}
+							onChange={this.handleChange('title')}
 							// InputProps={{
 							// 	startAdornment: <InputAdornment position="start">$</InputAdornment>,
 							//  }}
@@ -86,19 +132,25 @@ class MyTrans extends React.Component {
 							//  defaultValue="Default Value"
 							className={classes.input}
 							margin="normal"
+							value={this.state.desc}
+							onChange={this.handleChange('desc')}
 						/>
 						<TextField
 							id="standard-dense"
 							label="$ Amount"
 							className={classes.input}
 							margin="dense"
+							value={this.state.amount}
+							onChange={this.handleChange('amount')}
 							// InputProps={{
 							// 	startAdornment: <InputAdornment position="start">$</InputAdornment>,
 							//  }}
 						/>
-						<Button variant="contained" color="primary" className={classes.save} onClick={this.handleSignIn}>
+						
+						<Button variant="contained" color="primary" className={classes.save} onClick={this.handleSaveTran}>
 							Save
 						</Button>
+						{this.state.missingField ? <div>All fields required</div> : null}
 					</div>
 				</Modal>
 
@@ -108,11 +160,7 @@ class MyTrans extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		transactions: state.transactions
-	}
-}
+
 // initialize prop classes
 MyTrans.propTypes = {
 	classes: PropTypes.object.isRequired,
@@ -149,7 +197,7 @@ const styles = theme => ({
 	},
 	save: {
 		width: '100%',
-		margin: '20px 0px'
+		margin: '20px 0px 0px 0px'
 	}
 });
 
@@ -170,5 +218,11 @@ const styles = theme => ({
 // 	}
 // };
 
+const mapStateToProps = (state) => {
+	return {
+		transactions: state.transactions
+	}
+}
 
-export default connect(mapStateToProps, {})(withStyles(styles)(MyTrans));
+
+export default connect(mapStateToProps, {addTran, fetchTrans})(withStyles(styles)(MyTrans));
