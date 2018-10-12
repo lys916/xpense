@@ -21,4 +21,8 @@ firebase.initializeApp(FirebaseConfig);
 // export const userRef = databaseRef.child("user");
 
 // export const fireDatabase = firebase.database();
+
+const databaseRef = firebase.database().ref();
+export const tranRef = databaseRef.child("transactions");
+
 export const fireAuth = firebase.auth();
