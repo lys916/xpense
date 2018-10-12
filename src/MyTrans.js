@@ -67,7 +67,7 @@ class MyTrans extends React.Component {
 					open={this.state.open}
 					onClose={this.handleClose}
 				>
-					<div className={classes.paper}>
+					<div className={classes.modal}>
 					
 						<TextField
 							id="standard-dense"
@@ -119,10 +119,10 @@ MyTrans.propTypes = {
 };
 
 const styles = theme => ({
-	paper: {
+	modal: {
 		position: 'relative',
 		width: '90%',
-		height: '60vh',
+		height: 300,
 		margin: '10px auto',
 		padding: '0px 10px',
 		//   width: theme.spacing.unit * 50,
